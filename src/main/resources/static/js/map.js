@@ -106,24 +106,34 @@ function displayPlaces(places) {
 }
 
 
-function addEventHandle(target,coords, type) {
+const cafeInfo = document.getElementById("cafeInfo")
+cafeInfo.style.display="none"
 
+
+function addEventHandle(target,coords, type) {
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
-
+            const cafeName = document.getElementById("cafeName")
+            const cafeAddress = document.getElementById("cafeAddress")
+            const sales = document.getElementById("sales")
+            const customer = document.getElementById("customer")
+            const lat = document.getElementById("lat")
+            const lng = document.getElementById("lng")
+            cafeInfo.style.display="block"
             console.log(target)
             console.log(coords)
+
+            cafeName.value = target.lastChild.firstChild.nextSibling.innerHTML
+            cafeAddress.value = target.lastChild.firstChild.nextSibling.nextSibling.nextSibling.innerHTML
+            lat.value = coords.Ma
+            lng.value = coords.La
+
 
         });
     } else {
         target.attachEvent('on' + type, callback);
     }
 }
-
-
-
-
-
 
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
