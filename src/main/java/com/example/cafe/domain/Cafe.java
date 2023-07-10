@@ -10,9 +10,8 @@ import javax.persistence.Id;
 @Data
 @Entity
 public class Cafe {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cafeId;
 
+    @Id
     private String cafeName;
     private String address;
     private Long maxSales;

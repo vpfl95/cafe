@@ -110,18 +110,46 @@ const cafeInfo = document.getElementById("cafeInfo")
 cafeInfo.style.display="none"
 
 
+// 리스트 클릭시 오른쪽에 카페 정보
 function addEventHandle(target,coords, type) {
+
+    var result
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
+            
+            $.ajax({
+                type:"GET",
+                url:"/cafe",
+                data:{
+                    cafeName:target.lastChild.firstChild.nextSibling.innerHTML,
+                },
+                success:function(data){
+                    result = data
+                    if(result){
+                        minSales.value = result.minSales
+                        maxSales.value = result.maxSales
+                        customer.value = result.customer
+                    }else{
+                        minSales.value = null
+                        maxSales.value = null
+                        customer.value = null
+                    }
+
+                }
+            })
+
             const cafeName = document.getElementById("cafeName")
             const cafeAddress = document.getElementById("cafeAddress")
-            const sales = document.getElementById("sales")
+            const minSales = document.getElementById("minSales")
+            const maxSales = document.getElementById("maxSales")
             const customer = document.getElementById("customer")
             const lat = document.getElementById("lat")
             const lng = document.getElementById("lng")
             cafeInfo.style.display="block"
             console.log(target)
             console.log(coords)
+
+
 
             cafeName.value = target.lastChild.firstChild.nextSibling.innerHTML
             cafeAddress.value = target.lastChild.firstChild.nextSibling.nextSibling.nextSibling.innerHTML

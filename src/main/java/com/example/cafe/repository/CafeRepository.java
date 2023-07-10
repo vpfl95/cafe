@@ -26,15 +26,15 @@ public class CafeRepository {
         return cafe;
     }
 
-    public void update(Long cafeId, CafeUpdateDTO updateParam){
-        Cafe findCafe = em.find(Cafe.class, cafeId);
+    public void update(String cafeName, CafeUpdateDTO updateParam){
+        Cafe findCafe = em.find(Cafe.class, cafeName);
         findCafe.setCustomer(updateParam.getCustomer());
-        findCafe.setMaxSales(updateParam.getMinSales());
+        findCafe.setMaxSales(updateParam.getMaxSales());
         findCafe.setMinSales(updateParam.getMinSales());
     }
 
-    public Optional<Cafe> findById(Long id){
-        Cafe cafe = em.find(Cafe.class, id);
+    public Optional<Cafe> findById(String cafeName){
+        Cafe cafe = em.find(Cafe.class, cafeName);
         return Optional.ofNullable(cafe);
     }
 
